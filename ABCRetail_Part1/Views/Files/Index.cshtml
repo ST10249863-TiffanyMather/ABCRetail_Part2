@@ -1,0 +1,64 @@
+﻿@model List<ABCRetail_Part1.Models.FileModel>
+
+@{
+    ViewData["Title"] = "Files";
+}
+
+<div class="container text-center">
+    <h1>Files</h1>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-info">
+            @TempData["Message"]
+        </div>
+    }
+
+    <div class="d-flex flex-column align-items-center">
+        <form asp-action="Upload" method="post" enctype="multipart/form-data" class="w-80">
+            <div class="form-group">
+                <label for="file">Choose a file to upload:</label>
+                <input type="file" name="file" class="form-control" />
+
+                <div>
+                    @Html.ValidationMessage("file", "", new { @class = "text-danger" })
+                </div>
+
+                <button type="submit" class="btn btn-custom mt-4">Upload</button>
+            </div>
+        </form>
+
+        @if (Model != null && Model.Count > 0)
+        {
+            <div class="table-responsive mt-4">
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">File Name</th>
+                            <th scope="col">Size</th>
+                            <th scope="col">Last Modified</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var file in Model)
+                        {
+                            <tr>
+                                <td>@file.Name</td>
+                                <td>@file.DisplaySize</td>
+                                <td>@file.LastModified?.ToString("g")</td>
+                                <td>
+                                    <a asp-action="DownloadFile" asp-route-fileName="@file.Name" class="btn btn-outline-primary btn-sm">Download</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p class="mt-4">No files found.</p>
+        }
+    </div>
+</div>

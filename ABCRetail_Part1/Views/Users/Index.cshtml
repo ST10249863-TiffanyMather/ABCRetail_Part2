@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ABCRetail_Part1.Models.User>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h1 class="text-center">Users</h1>
+<p>
+    <a href="@Url.Action("AddUser")" class="btn btn-custom">Add New User</a>
+</p>
+
+@if (!Model.Any())
+{
+    <p class="text-center">There are no users available.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td class="text-end">
+                        <form asp-action="Delete" method="post" style="display:inline;">
+                            <input type="hidden" name="partitionKey" value="@user.PartitionKey" />
+                            <input type="hidden" name="rowKey" value="@user.RowKey" />
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

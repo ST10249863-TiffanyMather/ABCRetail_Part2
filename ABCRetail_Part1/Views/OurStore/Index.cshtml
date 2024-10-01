@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ABCRetail_Part1.Models.Product>
+
+@{
+    ViewData["Title"] = "Our Store";
+    string searchString = ViewData["CurrentFilter"] as string;
+}
+
+<h1 class="text-center mb-4">Our Store</h1>
+
+<div class="row">
+    <div class="col-md-6 offset-md-3 mb-4">
+        <form id="searchForm" asp-action="Index" method="get">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search by Product Name" name="searchString" value="@searchString" />
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-custom">Search</button>
+                    <button type="button" class="btn btn-custom" onclick="resetSearch()">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (!Model.Any())
+{
+    <p class="text-center">No products found.</p>
+}
+else
+{
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm text-center card-custom">
+                    <img class="card-img-top" src="@product.ImageURL" alt="Product Image">
+                    <div class="card-body">
+                        <h4 class="card-title">@product.ProductName</h4>
+                        <p class="card-text"><strong>Category:</strong> @product.Category</p>
+                        <p class="card-text"><strong>Price:</strong> @($"R{product?.Price:0.00}")</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="btn-group">
+                                @if (product.StockQuantity > 0)
+                                {
+                                    <a href="@Url.Action("PlaceOrder", "OurStore", new { partitionKey = product.PartitionKey, rowKey = product.RowKey })" class="btn btn-custom">Place Order</a>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-custom" disabled>Out of Stock</button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@section Scripts {
+    <script>
+        function resetSearch() {
+            document.getElementById('searchForm').reset();
+            document.getElementById('searchForm').submit();
+        }
+    </script>
+}

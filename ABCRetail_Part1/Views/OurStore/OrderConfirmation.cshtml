@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 75vh;">
+    <div class="col-md-6 text-center">
+        <div class="alert alert-primary" role="alert">
+            <h2>Your order has been confirmed!</h2>
+            <p>Thank you for choosing our services. Your order is now being processed.</p>
+        </div>
+        <a href="@Url.Action("Index", "OurStore")" class="btn btn-custom">Back to Our Store</a>
+    </div>
+</div>

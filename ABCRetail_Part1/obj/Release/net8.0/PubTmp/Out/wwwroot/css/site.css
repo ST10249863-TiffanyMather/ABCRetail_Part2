@@ -1,0 +1,129 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: aliceblue;
+}
+
+.image-grid {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+.image-container {
+    width: 200px;
+    border: 1px solid grey;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+    }
+
+.btn-custom {
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
+}
+
+    .btn-custom:hover {
+        background-color: royalblue;
+        border-color: royalblue;
+    }
+
+.welcome-container {
+    display: flex;
+    align-items: flex-start;
+    margin: 20px 0;
+    justify-content: center; 
+}
+
+.image-left {
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column; 
+}
+
+.text-center {
+    text-align: center; 
+}
+
+.team-images {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 15px; 
+    margin: 0 auto; 
+}
+
+    .team-images img {
+        width: 150px; 
+        height: 150px;
+        object-fit: cover; 
+        border-radius: 50%; 
+        border: 2px solid #ddd; 
+    }
+
+.image-right {
+    float: right;
+}
+
+h1 {
+    color: midnightblue;
+}
+
+h2{
+    color: royalblue;
+}
+
+h3 {
+    color: darkblue;
+}
+
+h4, h5 {
+    color: steelblue;
+}
+
+a {
+    color: dodgerblue;
+}
+
+a:hover {
+    color: darkblue;
+}
+
+.card-custom {
+    width: 300px; 
+    height: auto; 
+    margin: 0 auto; 
+}
+
+    .card-custom img {
+        height: 350px; 
+        object-fit: cover; 
+    }
+
+    .card-custom .card-body {
+        height: 220px; 
+        overflow: hidden; 
+    }
+
